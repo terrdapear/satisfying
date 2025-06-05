@@ -17,8 +17,8 @@ def main():
                 return True
         pygame.display.update()
         clock.tick(60)
-    
 
+        
 
 main()
 pygame.quit()
