@@ -105,7 +105,7 @@ def lodi():
 #============= EFFECTS ============#
 
 def main():
-    states = {"menu":menu,"tutorial":tutorial,"settings_menu":settings_menu,"play":play}
+    states = {"menu":menu,"tutorial":tutorial,"settings_menu":settings_menu,"level1":level1}
     while True:
         for event in pygame.event.get():
 
@@ -154,7 +154,7 @@ def main():
                         else:
                             fail()
                     
-                print("key:",event.key)
+                #print("key:",event.key)
             
             if event.type == pygame.KEYUP:
                 if event.key ==122:
