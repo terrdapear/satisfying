@@ -9,19 +9,20 @@ screen = pygame.display.set_mode((1280,720))
 clock = pygame.time.Clock()
 pygame.display.set_caption("TITLE")
 
-colors = {"z":"blue","x":"red"}
+colors = {"z":"blue","x":"red","cz":"purple","cx":"orange"}
 
 #==========================global stuff
 state=["menu"]
 settings={
     "beat_speed":10
 }
-receiver = [objects.receiver("up")]
+receiver = [objects.receiver("up"),objects.receiver("long")]
 track = []
 start = [0]
 delay=[1000*(1200/settings["beat_speed"])/60]
 
 combo=[0]
+pressed = [0,0,0]
 #==========================global stuff
 
 def update_beat():
@@ -36,12 +37,18 @@ def update_beat():
 def menu():
     pass
 
-def play():
+def level1():
+    #bacgkround
     bg = pygame.Surface((1280,720))
     bg.fill("Black")
 
     screen.blit(bg,(0,0))
+    #background
+    #track
+    screen.blit(objects.bamboo.convert_alpha(),(0,17))
     screen.blit(receiver[0].surface,receiver[0].rect)
+
+    #track
 
     if len(track)>0 and pygame.time.get_ticks()-start[0]+delay[0]>track[0][0]:
         objects.beats.append(objects.beat(place="up",color=colors[track[0][1]]))
@@ -50,7 +57,21 @@ def play():
 
     
 def tutorial():
-    pass
+    #bacgkround
+    bg = pygame.Surface((1280,720))
+    bg.fill("Black")
+
+    screen.blit(bg,(0,0))
+    #background
+    #track
+    screen.blit(objects.bamboo.convert_alpha(),(0,17))
+    screen.blit(receiver[0].surface,receiver[0].rect)
+    #track
+
+    if len(track)>0 and pygame.time.get_ticks()-start[0]+delay[0]>track[0][0]:
+        objects.beats.append(objects.beat(place="up",color=colors[track[0][1]]))
+        track.pop(0)
+    update_beat()
 
 def settings_menu():
     pass
@@ -62,12 +83,11 @@ def explode():
 
 def success():
     combo[0]+=1
-    print("let's go")
+    objects.beats.pop(0)
     pass
 
 def fail():
     combo[0]=0
-    print("bruh")
     pass
 
 # astig 25
@@ -88,41 +108,64 @@ def main():
     states = {"menu":menu,"tutorial":tutorial,"settings_menu":settings_menu,"play":play}
     while True:
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 return True
+            
             if event.type == pygame.KEYDOWN:
                 if event.key==32: #space
-                    state[0]="play"
+                    state[0]="tutorial"
                     start[0]=pygame.time.get_ticks()
-                    for i in objects.songs["tinikling"]['track']:
+                    for i in objects.songs["tutorial"]['track']:
                         track.append(i)
-                    pygame.mixer.music.load(objects.songs["tinikling"]["path"])
+                    pygame.mixer.music.load(objects.songs["tutorial"]["path"])
                     pygame.mixer.music.play()
 
                 if event.key==122:
                     if len(objects.beats)>0:
+                        pressed[0]=1
                         if objects.beats[0].rect.colliderect(receiver[0].rect):
                             if objects.beats[0].color=="blue":
                                 success()
-                            else:
-                                fail()
-                            objects.beats.pop(0)
+                            elif objects.beats[0].color=="purple" and pressed[2]==1:
+                                success()
                         else:
                             fail()
-                if event.key==120   :
+
+                if event.key==120:
                     if len(objects.beats)>0:
+                        pressed[1]=1
                         if objects.beats[0].rect.colliderect(receiver[0].rect):
                             if objects.beats[0].color=="red":
                                 success()
-                            else:
-                                fail()
-                            objects.beats.pop(0)
+                            elif objects.beats[0].color=="orange" and pressed[2]==1:
+                                success()
+                        else:
+                            fail()
+                
+                if event.key==99:
+                    if len(objects.beats)>0:
+                        pressed[2]=1
+                        if objects.beats[0].rect.colliderect(receiver[0].rect):
+                            if objects.beats[0].color=="orange" and pressed[1]==1:
+                                success()
+                            elif objects.beats[0].color=="purple" and pressed[0]==1:
+                                success()
                         else:
                             fail()
                     
                 print("key:",event.key)
-                
             
+            if event.type == pygame.KEYUP:
+                if event.key ==122:
+                    pressed[0]=0
+                if event.key ==120:
+                    pressed[1]=0
+                if event.key ==99:
+                    pressed[2]=0
+
+
+
         states[state[0]]()
 
         pygame.display.update()
