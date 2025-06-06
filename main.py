@@ -1,6 +1,5 @@
 import pygame
 import assets.objects as objects
-import time
 
 
 #important shit
