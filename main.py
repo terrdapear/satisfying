@@ -307,7 +307,7 @@ def mechanics():
     screen.blit(objects.ui["mech"],(0,0))
 
 def game_over():
-    bg = pygame.Surface((1280,720))
+    bg = objects.ui["fail"]
     screen.blit(bg,(0,0))
     pygame.mixer.music.stop()
 
