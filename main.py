@@ -185,6 +185,7 @@ def Settings():
     screen.blit(pangtakip,(917,378))
     screen.blit(pangtakip,(915,560))
 
+    screen.blit(objects.ui["abt"],(73,185))
     txt = objects.fonts["bantayoglight"].render(str(settings["volume"]),True,(0,0,0))
     screen.blit(txt,(920,378))
     txt1 = objects.fonts["bantayoglight"].render(str(settings["beat_speed"]),True,(0,0,0))
@@ -364,9 +365,8 @@ def game_over():
     pygame.mixer.music.stop()
 
 def ty():
-    #img = something
-    #screen.blit(img,(0,0))
-    pass
+    screen.blit(objects.ui["ty"],(0,0))
+
 
 #====================================================#
 #=====================================================#

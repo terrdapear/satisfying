@@ -89,3 +89,6 @@ def init():
     ui["speed_down"]=Button("assets/Settings Panel/minus.png",(629,529))
     #k=20#number of frames
     #ui["opening_frames"] = [pygame.image.load("assets\images\opening\_opening_frame"+str(x)).convert() for x in range(1,k+1)] 
+    ui["ty"]=pygame.transform.scale_by(pygame.image.load("assets/images/ty.png"),0.32).convert()
+    ui["abt"]=pygame.image.load("assets/Settings Panel/about_us.png").convert_alpha()
+    
