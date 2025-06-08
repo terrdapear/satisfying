@@ -16,7 +16,7 @@ colors = {"z":"blue","x":"red","cz":"purple","cx":"orange"}
 
 
 #===========================init
-state=["mechanics"]
+state=["titlescreen"]
 #==========================global stuff
 sounds = {"hit":pygame.mixer.Sound(objects.sounds["hit"]),"clap":pygame.mixer.Sound(objects.sounds["clap"])}
 sounds["hit"].set_volume(0.6)
@@ -52,7 +52,7 @@ diag_center=[640,670]
 def init_tutorial():
     state[0]="tutorial"
     last_level[0]="tutorial"
-    start[0]=pygame.time.get_ticks()-100
+    start[0]=pygame.time.get_ticks()-160
 
     #clear
     objects.beats.clear()
@@ -169,10 +169,20 @@ def update_speed(new_speed):
 #=====================================================#
 #======================== WINDOWS ====================#
 def titlescreen():
-    pass
+    screen.blit(objects.ui["background"], (0, 0))
+    objects.ui["play_button"].draw(screen)
+    objects.ui["settings_button"].draw(screen)
+    objects.ui["exit_button"].draw(screen)
+
+def Settings():
+    background = pygame.image.load("assets/Settings Panel/SETTINGS_Layout.png").convert_alpha()
+    screen.blit(background, (0, 0))
+    objects.ui["exit_button2"].draw(screen)
+    objects.ui["volume_up"].draw(screen)
+    objects.ui["volume_down"].draw(screen)
 
 def scene1():
-    pass
+    pass    
     
 def tutorial():
     #bacgkround
@@ -226,11 +236,17 @@ def tutorial():
 
 
 def scene2():
-    time = pygame.time.get_ticks()-start[0]
-    if time<10000: #hooray
-        bg = pygame.Surface((1280,720))
+    time = (pygame.time.get_ticks()-start[0])*0.001
+    if time<10: #hooray
+        bg = pygame.Surface((1280,720)) #pose
         bg.fill("Black")
         screen.blit(bg,(0,0))
+    elif time>10:
+        pass
+    elif time>20:
+        pass
+    else:
+        state[0]="talk_before_final"
 
 
 
@@ -246,33 +262,60 @@ def talk_before_final():
     c1 = l.render("Carmela:  Haha, handa ka na anak?",True,(255,255,255))
     j3 = l.render("Josefina: Opo ma, pero... ma, ika'y hindi talaga makapupunta?",True,(255,255,255))
     c2 = l.render("Carmela: 'Di, hindi maganda ang aking pakiramdam.",True,(255,255,255))
-    c3 = l.render("Ako'y mananatili nalang muna rito sa ating tahanan",True,(255,255,255))
+    c3 = l.render("Ako'y mananatili nalang muna rito sa ating tahanan.",True,(255,255,255))
     j4 = l.render("Josefina: Sige po...",True,(255,255,255))
     d1 = l.render("Ang hindi alam ni Josefina ay bukas na rin ihahatid si Carmela",True,(255,255,255))
     d2 = l.render("patungong ",True,(255,255,255))
     d3 = l.render("Impyerno.",True,(255,0,0))
-    if time>3:
-        screen.blit(j1,(30,30))
-    if time>6:
-        screen.blit(j2,(140,70))
-    if time>10:
-        screen.blit(c1,(30,120))
-    if time>13:
-        screen.blit(j3,(30,170))
-    if time>20:
-        screen.blit(c2,(30,220))
-    if time>25:
-        screen.blit(c3,(140,260))
-    if time>30:
-        screen.blit(j4,(30,310))    
-    if time>35:
-        screen.blit(d1,(30,410))
-    if time>40:
-        screen.blit(d2,(30,450))
-    if time>40.5:
-        screen.blit(d3,(170,450))
-    
-    if time>43:
+
+    a1 = l.render("Carmela: O, matulog na at may fiesta ka pa bukas!",True,(255,255,255))
+    a2 = l.render("Josefina: Sige, mama.",True,(255,255,255))
+
+    a3 = l.render("Carmela: Paano ko ba sasabihin sa kaniya.",True,(255,255,255))
+    a4 = l.render("Paano?",True,(255,0,0))
+
+    if time<43:
+        if time>3:
+            screen.blit(j1,(30,30))
+        if time>6:
+            screen.blit(j2,(140,70))
+        if time>10:
+            screen.blit(c1,(30,120))
+        if time>13:
+            screen.blit(j3,(30,170))
+        if time>20:
+            screen.blit(c2,(30,220))
+        if time>25:
+            screen.blit(c3,(140,260))
+        if time>30:
+            screen.blit(j4,(30,310))    
+        if time>35:
+            screen.blit(d1,(30,410))
+        if time>40:
+            screen.blit(bg,(0,0))
+            screen.blit(d2,(30,450))
+        if time>40.5:
+            screen.blit(d3,(170,450))
+    elif time<60:
+        if time>43:
+            screen.blit(a1,(30,30))
+        if time>48:
+            screen.blit(a2,(30,80))
+        if time>53:
+            screen.blit(a3,(30,180))
+        if time>57:
+            screen.blit(a4,(140,220))
+    elif True:
+        frame=()
+        if time>=57:
+            pass
+        if time>=64:
+            pass
+
+
+
+
+    if time>70:
         init_final()
 
 def final():
@@ -300,8 +343,8 @@ def final():
     update_beat()
     update_dialogue()
 
-def settings_menu():
-    pass
+    if lim>166_000:
+        state[0]="ty"
 
 def mechanics():
     screen.blit(objects.ui["mech"],(0,0))
@@ -310,6 +353,11 @@ def game_over():
     bg = objects.ui["fail"]
     screen.blit(bg,(0,0))
     pygame.mixer.music.stop()
+
+def ty():
+    #img = something
+    #screen.blit(img,(0,0))
+    pass
 
 #====================================================#
 #=====================================================#
@@ -321,7 +369,7 @@ def changemech():
 
 def main():
     l = False
-    states = {"titlescreen":titlescreen,"tutorial":tutorial,"settings_menu":settings_menu,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over}
+    states = {"titlescreen":titlescreen,"tutorial":tutorial,"Settings":Settings,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over,"ty":ty}
     inits = {"tutorial":changemech,"final":init_final}
     while True:
         for event in pygame.event.get():
@@ -388,6 +436,17 @@ def main():
                     pressed[1]=0
                 if event.key ==99:
                     pressed[2]=0
+            
+            if state[0]=="titlescreen":
+                if objects.ui["play_button"].is_pressed(event):
+                    state[0]="mechanics"
+                elif objects.ui["settings_button"].is_pressed(event):
+                    state[0]="Settings"
+                elif objects.ui["exit_button"].is_pressed(event):
+                    return True
+            elif state[0]=="Settings":
+                if objects.ui["exit_button2"].is_pressed(event):
+                    state[0]="titlescreen"
 
         if l:
             pygame.mixer.music.load(objects.songs["final"]["path"])
