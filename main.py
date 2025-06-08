@@ -85,16 +85,40 @@ def init_final():
     animtrack.clear()
     dialoguetrack.clear()
 
-
+    for i in [(6916.666666666667, "Mula noong ako'y musmos pa lamang,"), 
+ (13833.333333333334, "mahilig na akong sumayaw."), 
+ (20750.0, "Ito'y dahil sa aking nanay na aking naging tagapatnubay."), 
+ (27666.666666666668, "Handa ka na?"), 
+ (34583.333333333336, "Alalahanin ang kasunduan natin,"), 
+ (41500.0, "ibalik ang nararapat sa akin"), 
+ (48416.66666666667, "Paumanhin..."), 
+ (55333.333333333336, "ngunit,"), 
+ (62250.0, "Hindi ko hahayaang mapasaiyo ang aking kapangyarihan!"), 
+ (69166.66666666667, "Sa tingin mo ba'y makatatakas ka sa akin?"), 
+ (76083.33333333334, "Nagkakamali ka, Carmela!"), 
+ (83000.0, "Baka nakakalimutan mong mas may kapangyarihan ako sa iyo!"), 
+ (89916.66666666667, "Ako'y sumasayaw para sa aking sarili,"), 
+ (96833.33333333334, "ako'y sumasayaw upang magbigay saya sa nakararami."), 
+ (103750.0, "Carmela, wala ka nang matatakbuhan."), 
+ (110666.66666666667, "Sumuko ka na at ibigay ang iyong kapangyarihan!"), 
+ (117583.33333333334, "At higit sa lahat, ako'y sumasayaw upang pangalagaan ang kultura namin!"), 
+ (124500.0, "Ano ito?!"), 
+ (131416.6666666667, "Anong nangyayari sa akin?!"), 
+ (138333.33333333334, ""), 
+ (145250.0, "Anak ko!"), 
+ (152166.6666666667, ""), 
+ (159083.33333333334, ""), 
+ (166000.0, "")]:
+        dialoguetrack.append(i)
     pygame.mixer.music.load(objects.songs["final"]["path"])
     pygame.mixer.music.play()
     for x in objects.songs["final"]["track"]:
         track.append(x)
-    print(track)
+    for i in [(6916.666666666667, 1), (13833.333333333334, 2), (20750.0, 3), (27666.666666666668, 4), (34583.333333333336, 5), (41500.0, 6), (48416.66666666667, 7), (55333.333333333336, 8), (62250.0, 9), (69166.66666666667, 10), (76083.33333333334, 11), (83000.0, 12), (89916.66666666667, 13), (96833.33333333334, 14), (103750.0, 15), (110666.66666666667, 16), (117583.33333333334, 17), (124500.0, 18), (131416.6666666667, 19), (138333.33333333334, 20), (145250.0, 21), (152166.6666666667, 22), (159083.33333333334, 23), (166000.0, 24)]:
+        animtrack.append(i)
     start[0]=pygame.time.get_ticks()-321
     currsong[0]="Les Parapluies de Cherbourg"
     percent[0],percent[1],percent[2]=0,1,1
-
 
 #=============================================#
 #=====================================================#
@@ -131,18 +155,24 @@ def update_beat():
             objects.beats.pop(0)
             fail()
 
-def update_ui():
+def update_ui(c):
+    if c==1:
+        l=(255,255,255)
+    else:
+        l=(0,0,0)
     percent[0]=percent[1]/percent[2]
-    screen.blit(objects.fonts["maragsa"].render("%"+f'{percent[0]*100:.2f}',True,(255,255,255)),(1100,140))
+    screen.blit(objects.fonts["maragsa"].render("%"+f'{percent[0]*100:.2f}',True,l),(1100,140))
     screen.blit(objects.ui["threefourths"],(0,0))
     
-def update_dialogue():
+def update_dialogue(c):
+    if c==1:
+        l=(255,255,255)
+    else:
+        l=(0,0,0)
     lim =pygame.time.get_ticks()-start[0]
-    if len(dialoguetrack)>1 and lim<dialoguetrack[1][0]:
-        pass
-    elif len(dialoguetrack)>1:
+    if len(dialoguetrack)>1 and lim>=dialoguetrack[1][0]:
         dialoguetrack.pop(0)
-    font = objects.fonts["maragsa"].render(dialoguetrack[0][1],True,(255,255,255))
+    font = objects.fonts["maragsasmall"].render(dialoguetrack[0][1],True,l)
     rect= font.get_rect(center=(diag_center[0],diag_center[1]))
     screen.blit(font,rect)
     
@@ -190,9 +220,40 @@ def Settings():
     screen.blit(txt,(920,378))
     txt1 = objects.fonts["bantayoglight"].render(str(settings["beat_speed"]),True,(0,0,0))
     screen.blit(txt1,(915,560))
-
+digs = ["Itakwil, palayasin, patayin man ako...","Hinding-hindi nila maalis ang sayaw mula sa aking katawan.","","Ituturo ko sa iyo ang sayaw na nagmula pa sa ating mga katutubo,","kung saan ikaw ay tila isang ibon na tinatawag nating tikling,","na umiiwas sa mga inihandang patibong ng mga magsasaka.","Tinatawag natin itong tinikling."]
 def scene1():
-    pass    
+    time = pygame.time.get_ticks()-start[0]
+    if time<1_000:
+        return True
+    x = 0 #first
+    if time>6_500: #second
+        x=1
+    if time>12_000: #black screen
+        x=2
+    if time>22_000: #girl talks to mom
+        x=3
+    if time>27_000:
+        x=4
+    if time>36_000:
+        x=5
+    if time>43_000:
+        x=6
+    if time>50_000:
+        state[0]="mechanics"
+    
+    screen.blit(objects.ui["opener"][x],(0,0))
+
+    font = objects.fonts["omag"].render(digs[x],True,(0,0,0))
+    rect= font.get_rect(center=(diag_center[0],diag_center[1]))
+    screen.blit(font,rect)
+
+    if time>12_000 and time<22_000:
+        font = objects.fonts["maragsa"].render("Indak.",True,(255,255,255))
+        rect= font.get_rect(center=(640,360))
+        screen.blit(font,rect)
+    
+
+
     
 def tutorial():
     #bacgkround
@@ -201,7 +262,7 @@ def tutorial():
     if lim<47682.06:
         bg=objects.bg["tutorial"]
     else:
-        bg=objects.bg["tutorial"]
+        bg=objects.ui["bggg"]
     screen.blit(bg,(0,0))
     #background
     #track
@@ -232,9 +293,9 @@ def tutorial():
         objects.ui["help"]=objects.fonts["bantayog"].render(tuttrack[0][1],True,(255,255,255))
         screen.blit(objects.ui["help"],(30,150))    
 
-    update_ui()
+    update_ui(1)
     update_beat()
-    update_dialogue()
+    update_dialogue(1)
 
     if lim>104008.609271522:
         state[0]="scene2"
@@ -246,19 +307,61 @@ def tutorial():
 
 
 def scene2():
+    
+
     time = (pygame.time.get_ticks()-start[0])*0.001
+    bg = pygame.image.load("assets/pose.png").convert_alpha() #pose
     if time<10: #hooray
-        bg = pygame.Surface((1280,720)) #pose
-        bg.fill("Black")
         screen.blit(bg,(0,0))
-    elif time>10:
-        pass
-    elif time>20:
-        pass
+        return
+    screen.blit(bg,(0,0))
+    bbg = pygame.Surface((1280,720))
+    bbg.fill("Black")
+    bbg.set_alpha(150)
+    screen.blit(bbg,(0,0))
+    l=objects.fonts["maragsasmall"] 
+    j1 = l.render("Josefina: Mama, nakauwi na po ako!",True,(255,255,255))
+    j2 = l.render("Carmela: Anak, kumusta ang pagsasanay mo?",True,(255,255,255))
+    c1 = l.render("Josefina: Mabuti naman po mama.",True,(255,255,255))
+    j3 = l.render("Carmela: Mukhang pagod na pagod ka; tara at kumain na tayo.",True,(255,255,255))
+    
+
+    if time<43:
+        if time>13:
+            screen.blit(j1,(30,30))
+        if time>16:
+            screen.blit(j2,(30,70))
+        if time>20:
+            screen.blit(c1,(30,120))
+        if time>23:
+            screen.blit(j3,(30,170))
+        if time>29:
+            state[0]="talk_before_final"
+            start[0]=pygame.time.get_ticks()
+
+def prefi():
+    time = pygame.time.get_ticks() - start[0]
+    l=objects.fonts["maragsasmall"] 
+    
+    if time<7_000:
+        screen.blit(objects.ui["one"],(0,0))
+        j1 = l.render("Bibigyan kita ng pagkakataong makapiling ang iyong anak nang mas matagal.",True,(0,0,0))
+        rect = j1.get_rect(center=(640,690))
+        screen.blit(j1,rect)
+    elif time<14_000:
+        screen.blit(objects.ui["one"],(0,0))
+        j1 = l.render("Ngunit, sa isang kondisyon... Pagsapit ng takdang panahon,",True,(0,0,0))
+        rect = j1.get_rect(center=(640,690))
+        screen.blit(j1,rect)
+    elif time<21_000:
+        screen.blit(objects.ui["two"],(0,0))
+        j1 = l.render("iyong isusuko ang iyong kapangyarihang taglay sa akin, kasabay nito ay ang iyong kamatayan.",True,(255,255,255))
+        rect = j1.get_rect(center=(640,690))
+        screen.blit(j1,rect)
     else:
-        state[0]="talk_before_final"
-
-
+        init_final()
+        state[0]="final"
+    
 
 #start[0]=pygame.time.get_ticks()
 def talk_before_final():
@@ -266,7 +369,7 @@ def talk_before_final():
     bg = pygame.Surface((1280,720))
     bg.fill("Black")
     screen.blit(bg,(0,0))
-    l=objects.fonts["maragsasmall"]
+    l=objects.fonts["maragsasmall"] 
     j1 = l.render("Josefina: Mama, bukas na po ang sayaw ko sa fiesta!",True,(255,255,255))
     j2 = l.render("Ilang buwan ko na ito inaabangan at ngayon parating na.",True,(255,255,255))
     c1 = l.render("Carmela:  Haha, handa ka na anak?",True,(255,255,255))
@@ -281,8 +384,8 @@ def talk_before_final():
     a1 = l.render("Carmela: O, matulog na at may fiesta ka pa bukas!",True,(255,255,255))
     a2 = l.render("Josefina: Sige, mama.",True,(255,255,255))
 
-    a3 = l.render("Carmela: Paano ko ba sasabihin sa kaniya.",True,(255,255,255))
-    a4 = l.render("Paano?",True,(255,0,0))
+    a3 = l.render("Carmela: Paano ko ba sasabihin sa kaniya?",True,(255,255,255))
+    a4 = l.render("Namatay dapat ako.",True,(255,0,0))
 
     if time<43:
         if time>3:
@@ -315,31 +418,19 @@ def talk_before_final():
             screen.blit(a3,(30,180))
         if time>57:
             screen.blit(a4,(140,220))
-    elif True:
-        frame=()
-        if time>=57:
-            pass
-        if time>=64:
-            pass
-
-
-
-
-    if time>70:
-        init_final()
+    if time>=60:
+        state[0]="prefi"
+        start[0]=pygame.time.get_ticks()
 
 def final():
-    bg = pygame.Surface((1280,720))
-    bg.fill("Black")
-    screen.blit(bg,(0,0))
+    update_anim(objects.ui["final_frames"],0,0)
     
     lim=pygame.time.get_ticks()-start[0]
     tim=lim+delay[0]
 
-    screen.blit(bg,(0,0))
     #background
     #track
-    screen.blit(objects.bamboo[0],(0,17))
+    #screen.blit(objects.bamboo[0],(0,17))
     screen.blit(receiver[0].surface,receiver[0].rect)
     #track
     
@@ -348,10 +439,9 @@ def final():
         objects.beats.append(objects.beat(place="up",color=colors[track[0][1]]))
         track.pop(0)
 
-    update_anim(objects.ui["final_frames"],0,0)
-    update_ui()
+    update_ui(0)
     update_beat()
-    update_dialogue()
+    update_dialogue(0)
 
     if lim>166_000:
         state[0]="ty"
@@ -378,7 +468,7 @@ def changemech():
 
 def main():
     l = False
-    states = {"titlescreen":titlescreen,"tutorial":tutorial,"Settings":Settings,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over,"ty":ty}
+    states = {"titlescreen":titlescreen,"tutorial":tutorial,"Settings":Settings,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over,"ty":ty,"prefi":prefi}
     inits = {"tutorial":changemech,"final":init_final}
     while True:
         for event in pygame.event.get():
@@ -448,7 +538,10 @@ def main():
             
             if state[0]=="titlescreen":
                 if objects.ui["play_button"].is_pressed(event):
-                    state[0]="mechanics"
+                    state[0]="scene1"
+                    start[0]=pygame.time.get_ticks()
+                    pygame.mixer.music.load(objects.songs["opener"]["path"])
+                    pygame.mixer.music.play()
                 elif objects.ui["settings_button"].is_pressed(event):
                     state[0]="Settings"
                 elif objects.ui["exit_button"].is_pressed(event):

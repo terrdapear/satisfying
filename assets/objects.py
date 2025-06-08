@@ -25,7 +25,11 @@ songs = {
     },
     "final":{
         "path":"assets\music\_final.mp3",
-        "track":[(4361, 'x'), (6312, 'x'), (7609, 'x'), (8056, 'x'), (9759, 'x'), (11491, 'x'), (12821, 'x'), (13208, 'x'), (14594, 'x'), (15043, 'x'), (16386, 'x'), (16836, 'x'), (18341, 'x'), (18825, 'x'), (19791, 'x'), (20673, 'x'), (21556, 'x'), (21986, 'x'), (22463, 'x'), (24261, 'x'), (25950, 'x'), (26435, 'x'), (26887, 'x'), (27936, 'x'), (32564, 'x'), (34966, 'x'), (35885, 'x'), (36852, 'x'), (37751, 'x'), (38612, 'x'), (39554, 'x'), (40453, 'x'), (42286, 'x'), (43182, 'x'), (44129, 'x'), (45924, 'x'), (46867, 'x'), (47777, 'x'), (48206, 'x'), (48819, 'x'), (49319, 'x'), (49751, 'x'), (50729, 'x'), (51593, 'x'), (52537, 'x'), (52999, 'x'), (53459, 'x'), (54326, 'x'), (55242, 'x'), (56155, 'x'), (57088, 'x'), (57555, 'x'), (58036, 'x'), (58983, 'x'), (60112, 'x'), (63614, 'x'), (66729, 'x'), (67196, 'x'), (67674, 'x'), (68087, 'x'), (68548, 'x'), (68962, 'x'), (69404, 'x'), (69851, 'x'), (70315, 'x'), (70745, 'x'), (71126, 'x'), (72069, 'x'), (72531, 'x'), (72989, 'x'), (73469, 'x'), (73846, 'x'), (74326, 'x'), (74745, 'x'), (75173, 'x'), (75598, 'x'), (76471, 'x'), (77264, 'x'), (78093, 'x'), (79118, 'x'), (79554, 'x'), (79997, 'x'), (80460, 'x'), (80896, 'x'), (81360, 'x'), (81742, 'x'), (82208, 'x'), (82672, 'x'), (83464, 'x'), (84416, 'x'), (86168, 'x'), (86997, 'x'), (87846, 'x'), (88662, 'x'), (89665, 'x'), (90578, 'x'), (94674, 'x'), (95510, 'x'), (96445, 'x'), (97384, 'x'), (97795, 'x'), (98190, 'x'), (98606, 'x'), (99100, 'x'), (99508, 'x'), (99935, 'x'), (100424, 'x'), (100889, 'x'), (101787, 'x'), (102733, 'x'), (103610, 'x'), (104576, 'x'), (104961, 'x'), (105441, 'x'), (105835, 'x'), (106299, 'x'), (106726, 'x'), (107142, 'x'), (108189, 'x'), (109052, 'x'), (109924, 'x'), (110832, 'x'), (111764, 'x'), (112659, 'x'), (113509, 'x'), (114449, 'x'), (114849, 'x'), (115030, 'x'), (115330, 'x'), (116132, 'x'), (116993, 'x'), (117827, 'x'), (118780, 'x'), (119779, 'x'), (124985, 'x'), (125867, 'x'), (126797, 'x'), (127661, 'x'), (128528, 'x'), (129437, 'x'), (130341, 'x'), (131199, 'x'), (132048, 'x'), (132962, 'x'), (133866, 'x'), (134733, 'x'), (135685, 'x'), (136619, 'x'), (137553, 'x'), (138677, 'x'), (139496, 'x'), (140432, 'x'), (141336, 'x'), (142309, 'x'), (142709, 'x'), (143175, 'x'), (144074, 'x'), (144957, 'x'), (145942, 'x'), (146345, 'x'), (146828, 'x'), (147311, 'x'), (147777, 'x'), (148758, 'x'), (149386, 'x'), (149521, 'x'), (149690, 'x'), (151133, 'x'), (154343, 'x')]
+        "track":[(4361, 'z'), (6312, 'x'), (7609, 'z'), (8056, 'x'), (9759, 'z'), (11491, 'x'), (12821, 'z'), (13208, 'x'), (14594, 'z'), (15043, 'cx'), (16386, 'z'), (16836, 'x'), (18341, 'z'), (18825, 'x'), (19791, 'z'), (20673, 'x'), (21556, 'z'), (21986, 'x'), (22463, 'z'), (24261, 'x'), (25950, 'z'), (26435, 'x'), (26887, 'z'), (27936, 'x'), (32564, 'cz'), (34966, 'x'), (35885, 'z'), (36852, 'x'), (37751, 'z'), (38612, 'x'), (39554, 'z'), (40453, 'x'), (42286, 'z'), (43182, 'x'), (44129, 'z'), (45924, 'x'), (46867, 'z'), (47777, 'x'), (48206, 'z'), (48819, 'x'), (49319, 'z'), (49751, 'x'), (50729, 'z'), (51593, 'x'), (52537, 'cz'), (52999, 'x'), (53459, 'z'), (54326, 'x'), (55242, 'z'), (56155, 'x'), (57088, 'z'), (57555, 'x'), (58036, 'z'), (58983, 'x'), (60112, 'z'), (63614, 'x'), (66729, 'z'), (67196, 'x'), (67674, 'z'), (68087, 'x'), (68548, 'z'), (68962, 'x'), (69404, 'z'), (69851, 'x'), (70315, 'z'), (70745, 'x'), (71126, 'z'), (72069, 'cx'), (72531, 'z'), (72989, 'x'), (73469, 'z'), (73846, 'x'), (74326, 'z'), (74745, 'x'), (75173, 'z'), (75598, 'x'), (76471, 'z'), (77264, 'x'), (78093, 'z'), (79118, 'x'), (79554, 'z'), (79997, 'x'), (80460, 'z'), (80896, 'x'), (81360, 'z'), (81742, 'x'), (82208, 'z'), (82672, 'x'), (83464, 'z'), (84416, 'x'), (86168, 'z'), (86997, 'x'), (87846, 'z'), (88662, 'x'), (89665, 'z'), (90578, 'cx'), (94674, 'z'), (95510, 'x'), (96445, 'z'), (97384, 'x'), (97795, 'z'), (98190, 'x'), (98606, 'z'), (99100, 'x'), (99508, 'z'), (99935, 'x'), (100424, 'z'), (100889, 'x'), (101787, 'cz'), (102733, 'x'), (103610, 'z'), (104576, 'x'), (104961, 'z'), (105441, 'x'), (105835, 'z'), (106299, 'x'), (106726, 'z'), (107142, 'x'), (108189, 'z'), (109052, 'x'), (109924, 'z'), (110832, 'x'), (111764, 'z'), (112659, 'x'), (113509, 'z'), (114449, 'x'), (114849, 'z'), (115030, 'x'), (115330, 'z'), (116132, 'x'), (116993, 'z'), (117827, 'x'), (118780, 'z'), (119779, 'cx'), (124985, 'z'), (125867, 'x'), (126797, 'z'), (127661, 'x'), (128528, 'z'), (129437, 'x'), (130341, 'z'), (131199, 'x'), (132048, 'z'), (132962, 'x'), (133866, 'z'), (134733, 'x'), (135685, 'z'), (136619, 'x'), (137553, 'z'), (138677, 'x'), (139496, 'z'), (140432, 'cx'), (141336, 'z'), (142309, 'x'), (142709, 'z'), (143175, 'x'), (144074, 'z'), (144957, 'x'), (145942, 'z'), (146345, 'x'), (146828, 'z'), (147311, 'x'), (147777, 'z'), (148758, 'x'), (149386, 'z'), (149521, 'cx'), (149690, 'z'), (151133, 'x'), (154343, 'z')]
+
+    },
+    "opener":{
+        "path":"assets/music/openingmusic.MP3"
     }
 }
 
@@ -65,6 +69,7 @@ def init():
     bg["tutorial"]=pygame.image.load("assets\images\_tutorial\_bg.png").convert()
     fonts["maragsa"]=pygame.font.Font("assets\_fonts\ourfont.otf",60)
     fonts["maragsasmall"]=pygame.font.Font("assets\_fonts\ourfont.otf",30)
+    fonts["omag"]=pygame.font.Font("assets\_fonts\ourfont.otf",35)
     fonts["bantayog"]=pygame.font.Font("assets\_fonts\Bantayog-Regular.otf",40)
     fonts["bantayoglight"]=pygame.font.Font("assets\_fonts\Bantayog-Light.otf",30)
     tutorial["frames"]=[pygame.image.load("assets\images\_tutorial\_tutorial_frame"+str(i)+".png").convert_alpha() for i in range(1,6)]
@@ -75,8 +80,9 @@ def init():
     ui["corners"]=pygame.image.load("assets\images\_anikanik\_threefourths.png").convert_alpha()
     ui["threefourths"]=pygame.image.load("assets\images\_anikanik\corners.png").convert_alpha()
     ui["mech"]=pygame.transform.scale_by(pygame.image.load("assets\images\_anikanik\Indak.png"),2/3 ).convert()
-    #n=20#number of frames
-    #ui["final_frames"] = [pygame.image.load("assets\images\_final\_final_frame"+str(x)).convert() for x in range(1,n)]
+    n=24
+    ui["final_frames"] = [pygame.image.load("assets\ENDING_SCENE\_end_frame"+str(x)+".png").convert() for x in range(1,n)]
+    ui["final_frames"].append(pygame.image.load("assets\ENDING_SCENE\_end.png").convert())
     ui["fail"]=pygame.transform.scale_by(pygame.image.load("assets\images\_fail.png"),2/3).convert()
     ui["background"]=pygame.image.load("assets/Main Screen Panel/MAINSCREEN_Layout.png").convert_alpha()
     ui["play_button"]= Button("assets/Main Screen Panel/play.png", (439, 299))
@@ -87,8 +93,19 @@ def init():
     ui["volume_down"]= Button("assets/Settings Panel/minus.png", (629, 318))
     ui["speed_up"] = Button("assets/Settings Panel/plus.png",(1020,529))
     ui["speed_down"]=Button("assets/Settings Panel/minus.png",(629,529))
-    #k=20#number of frames
-    #ui["opening_frames"] = [pygame.image.load("assets\images\opening\_opening_frame"+str(x)).convert() for x in range(1,k+1)] 
+    
     ui["ty"]=pygame.transform.scale_by(pygame.image.load("assets/images/ty.png"),0.32).convert()
     ui["abt"]=pygame.image.load("assets/Settings Panel/about_us.png").convert_alpha()
-    
+    bbg = pygame.Surface((1280,720))
+    bbg.fill("Black")
+    ui["opener"] = [pygame.image.load("assets\opener\_opener_frame"+str(x)+".png").convert() for x in range(1,3)] 
+    ui['opener'].append(bbg)
+
+    ui['opener'].append(pygame.image.load("assets\opener\_opener_frame3.png").convert())
+    ui['opener'].append(pygame.image.load("assets\opener\_opener_frame3.png").convert())
+    ui['opener'].append(pygame.image.load("assets\opener\_opener_frame3.png").convert())
+    ui['opener'].append(pygame.image.load("assets\opener\_opener_frame3.png").convert())
+    ui['opener'].append(pygame.image.load("assets\opener\_opener_frame3.png").convert())
+    ui["bggg"] = pygame.transform.scale_by(pygame.image.load("assets/town.png"),2/3).convert()
+    ui["one"] = pygame.image.load("assets/talk/1.png").convert()
+    ui["two"] = pygame.transform.scale_by(pygame.image.load("assets/talk/2.png"),2/3).convert()
