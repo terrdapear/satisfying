@@ -22,7 +22,8 @@ sounds = {"hit":pygame.mixer.Sound(objects.sounds["hit"]),"clap":pygame.mixer.So
 sounds["hit"].set_volume(0.6)
 sounds["clap"].set_volume(0.8)
 settings={
-    "beat_speed":10
+    "beat_speed":10,
+    "volume":10
 }
 receiver = [objects.receiver("up"),objects.receiver("long")]
 track = []
@@ -39,16 +40,86 @@ combo=[0]
 pressed = [0,0,0]
 last_time=[0]
 
-
-
+last_level=["tutorial"]
 diag_center=[640,670]
 #==========================global stuff
-#==========================more init
+#=====================================================#
+#=====================================================#
+#=====================================================#
+#=========== initializing levels =============#
 
 
+def init_tutorial():
+    state[0]="tutorial"
+    last_level[0]="tutorial"
+    start[0]=pygame.time.get_ticks()-100
 
-#============================init
+    #clear
+    objects.beats.clear()
+    track.clear()
+    animtrack.clear()
+    tuttrack.clear()
+    dialoguetrack.clear()
 
+    for i in objects.songs["tutorial"]['track']:
+        track.append(i)
+    pygame.mixer.music.load(objects.songs["tutorial"]["path"])
+    pygame.mixer.music.play()   
+    percent[0],percent[1],percent[2]=0,1,1
+    currsong[0]="Tinikling"
+    for i in objects.tutorial["track"]:
+        animtrack.append(i)
+    for i in objects.tutorial["helpdiag"]:
+        tuttrack.append(i)
+    for i in objects.tutorial["dialogue"]:
+        dialoguetrack.append(i)
+
+
+def init_final():
+    state[0]="final"
+    last_level[0]="final"
+
+    #clear
+    objects.beats.clear()
+    track.clear()
+    animtrack.clear()
+    dialoguetrack.clear()
+
+
+    pygame.mixer.music.load(objects.songs["final"]["path"])
+    pygame.mixer.music.play()
+    for x in [(4361, 'x'), (6312, 'x'), (7609, 'x'), (8056, 'x'), (9759, 'x'), (11491, 'x'), (12821, 'x'), (13208, 'x'), (14594, 'x'), (15043, 'x'), (16386, 'x'), (16836, 'x'), (18341, 'x'), (18825, 'x'), (19791, 'x'), (20673, 'x'), (21556, 'x'), (21986, 'x'), (22463, 'x'), (24261, 'x'), (25950, 'x'), (26435, 'x'), (26887, 'x'), (27936, 'x'), (32564, 'x'), (34966, 'x'), (35885, 'x'), (36852, 'x'), (37751, 'x'), (38612, 'x'), (39554, 'x'), (40453, 'x'), (42286, 'x'), (43182, 'x'), (44129, 'x'), (45924, 'x'), (46867, 'x'), (47777, 'x'), (48206, 'x'), (48819, 'x'), (49319, 'x'), (49751, 'x'), (50729, 'x'), (51593, 'x'), (52537, 'x'), (52999, 'x'), (53459, 'x'), (54326, 'x'), (55242, 'x'), (56155, 'x'), (57088, 'x'), (57555, 'x'), (58036, 'x'), (58983, 'x'), (60112, 'x'), (63614, 'x'), (66729, 'x'), (67196, 'x'), (67674, 'x'), (68087, 'x'), (68548, 'x'), (68962, 'x'), (69404, 'x'), (69851, 'x'), (70315, 'x'), (70745, 'x'), (71126, 'x'), (72069, 'x'), (72531, 'x'), (72989, 'x'), (73469, 'x'), (73846, 'x'), (74326, 'x'), (74745, 'x'), (75173, 'x'), (75598, 'x'), (76471, 'x'), (77264, 'x'), (78093, 'x'), (79118, 'x'), (79554, 'x'), (79997, 'x'), (80460, 'x'), (80896, 'x'), (81360, 'x'), (81742, 'x'), (82208, 'x'), (82672, 'x'), (83464, 'x'), (84416, 'x'), (86168, 'x'), (86997, 'x'), (87846, 'x'), (88662, 'x'), (89665, 'x'), (90578, 'x'), (94674, 'x'), (95510, 'x'), (96445, 'x'), (97384, 'x'), (97795, 'x'), (98190, 'x'), (98606, 'x'), (99100, 'x'), (99508, 'x'), (99935, 'x'), (100424, 'x'), (100889, 'x'), (101787, 'x'), (102733, 'x'), (103610, 'x'), (104576, 'x'), (104961, 'x'), (105441, 'x'), (105835, 'x'), (106299, 'x'), (106726, 'x'), (107142, 'x'), (108189, 'x'), (109052, 'x'), (109924, 'x'), (110832, 'x'), (111764, 'x'), (112659, 'x'), (113509, 'x'), (114449, 'x'), (114849, 'x'), (115030, 'x'), (115330, 'x'), (116132, 'x'), (116993, 'x'), (117827, 'x'), (118780, 'x'), (119779, 'x'), (124985, 'x'), (125867, 'x'), (126797, 'x'), (127661, 'x'), (128528, 'x'), (129437, 'x'), (130341, 'x'), (131199, 'x'), (132048, 'x'), (132962, 'x'), (133866, 'x'), (134733, 'x'), (135685, 'x'), (136619, 'x'), (137553, 'x'), (138677, 'x'), (139496, 'x'), (140432, 'x'), (141336, 'x'), (142309, 'x'), (142709, 'x'), (143175, 'x'), (144074, 'x'), (144957, 'x'), (145942, 'x'), (146345, 'x'), (146828, 'x'), (147311, 'x'), (147777, 'x'), (148758, 'x'), (149386, 'x'), (149521, 'x'), (149690, 'x'), (151133, 'x'), (154343, 'x')]:
+        track.append(x)
+    print(track)
+    start[0]=pygame.time.get_ticks()-321
+    currsong[0]="Les Parapluies de Cherbourg"
+    percent[0],percent[1],percent[2]=0,1,1
+
+
+#=============================================#
+#=====================================================#
+#=====================================================#
+#=====================================================#
+#============= EFFECTS ============#
+
+def success():
+    combo[0]+=1
+    objects.beats.pop(0)
+    sounds["hit"].play()
+    percent[1]+=1
+    percent[2]+=1
+
+def fail():
+    percent[2]+=1
+    percent[0]=percent[1]/percent[2]
+    if percent[0]<.7:
+        state[0]="game_over"
+
+#============= EFFECTS ============#
+#=====================================================#
+#=====================================================#
+#=====================================================#
+#===============updates================#
 def update_beat():
     dt = (pygame.time.get_ticks()-last_time[0])*0.06
 
@@ -58,14 +129,15 @@ def update_beat():
             screen.blit(beat.surface,beat.rect)
         if objects.beats[0].rect.right<=0:
             objects.beats.pop(0)
-            percent[2]+=1
+            fail()
 
 def update_ui():
     percent[0]=percent[1]/percent[2]
     screen.blit(objects.fonts["maragsa"].render("%"+f'{percent[0]*100:.2f}',True,(255,255,255)),(1100,140))
     screen.blit(objects.ui["threefourths"],(0,0))
     
-def update_dialogue(lim):
+def update_dialogue():
+    lim =pygame.time.get_ticks()-start[0]
     if len(dialoguetrack)>1 and lim<dialoguetrack[1][0]:
         pass
     elif len(dialoguetrack)>1:
@@ -74,7 +146,28 @@ def update_dialogue(lim):
     rect= font.get_rect(center=(diag_center[0],diag_center[1]))
     screen.blit(font,rect)
     
-#========== WINDOWS ===========#
+def update_anim(folder,x,y): # folder = list[frames] ,x ,y
+    lim = pygame.time.get_ticks()-start[0]
+    if len(animtrack)>1 and lim>=animtrack[1][0]:
+        animtrack.pop(0)
+    screen.blit( folder[animtrack[0][1]-1] , (x,y))
+
+def update_volume(new_volume):
+    settings["volume"]=new_volume
+    pygame.mixer.music.set_volume(settings['volume']/10)
+    sounds["hit"].set_volume(0.6*(settings['volume']/10))
+    sounds["clap"].set_volume(0.8*(settings['volume']/10))
+
+def update_speed(new_speed):
+    settings["beat_speed"]=new_speed
+    delay[0]=1000*(1200/settings["beat_speed"])/60
+
+#=====================================================#
+#=====================================================#
+#=====================================================#
+#=====================================================#
+#=====================================================#
+#======================== WINDOWS ====================#
 def titlescreen():
     pass
 
@@ -110,24 +203,18 @@ def tutorial():
         y=136
         bro=objects.tutorial["frames2"]
 
-    if len(animtrack)>1 and lim<animtrack[1][0]: 
-        pass
-    elif len(animtrack)>1:
-        animtrack.pop(0)
-    screen.blit(bro[animtrack[0][1]-1],(0,y))  
+    update_anim(bro,0,y)
 
     #new tutdig
     if lim < 27000:
-        if len(tuttrack)>1 and lim<tuttrack[1][0]:
-            pass
-        elif len(tuttrack)>1:
+        if len(tuttrack)>1 and lim>=tuttrack[1][0]:
             tuttrack.pop(0)
         objects.ui["help"]=objects.fonts["bantayog"].render(tuttrack[0][1],True,(255,255,255))
         screen.blit(objects.ui["help"],(30,150))    
 
     update_ui()
     update_beat()
-    update_dialogue(lim)
+    update_dialogue()
 
     if lim>104008.609271522:
         state[0]="scene2"
@@ -186,15 +273,7 @@ def talk_before_final():
         screen.blit(d3,(170,450))
     
     if time>43:
-        state[0]="final"
-        pygame.mixer.music.load(objects.songs["final"]["path"])
-        pygame.mixer.music.play()
-        for x in [(4361, 'x'), (6312, 'x'), (7609, 'x'), (8056, 'x'), (9759, 'x'), (11491, 'x'), (12821, 'x'), (13208, 'x'), (14594, 'x'), (15043, 'x'), (16386, 'x'), (16836, 'x'), (18341, 'x'), (18825, 'x'), (19791, 'x'), (20673, 'x'), (21556, 'x'), (21986, 'x'), (22463, 'x'), (24261, 'x'), (25950, 'x'), (26435, 'x'), (26887, 'x'), (27936, 'x'), (32564, 'x'), (34966, 'x'), (35885, 'x'), (36852, 'x'), (37751, 'x'), (38612, 'x'), (39554, 'x'), (40453, 'x'), (42286, 'x'), (43182, 'x'), (44129, 'x'), (45924, 'x'), (46867, 'x'), (47777, 'x'), (48206, 'x'), (48819, 'x'), (49319, 'x'), (49751, 'x'), (50729, 'x'), (51593, 'x'), (52537, 'x'), (52999, 'x'), (53459, 'x'), (54326, 'x'), (55242, 'x'), (56155, 'x'), (57088, 'x'), (57555, 'x'), (58036, 'x'), (58983, 'x'), (60112, 'x'), (63614, 'x'), (66729, 'x'), (67196, 'x'), (67674, 'x'), (68087, 'x'), (68548, 'x'), (68962, 'x'), (69404, 'x'), (69851, 'x'), (70315, 'x'), (70745, 'x'), (71126, 'x'), (72069, 'x'), (72531, 'x'), (72989, 'x'), (73469, 'x'), (73846, 'x'), (74326, 'x'), (74745, 'x'), (75173, 'x'), (75598, 'x'), (76471, 'x'), (77264, 'x'), (78093, 'x'), (79118, 'x'), (79554, 'x'), (79997, 'x'), (80460, 'x'), (80896, 'x'), (81360, 'x'), (81742, 'x'), (82208, 'x'), (82672, 'x'), (83464, 'x'), (84416, 'x'), (86168, 'x'), (86997, 'x'), (87846, 'x'), (88662, 'x'), (89665, 'x'), (90578, 'x'), (94674, 'x'), (95510, 'x'), (96445, 'x'), (97384, 'x'), (97795, 'x'), (98190, 'x'), (98606, 'x'), (99100, 'x'), (99508, 'x'), (99935, 'x'), (100424, 'x'), (100889, 'x'), (101787, 'x'), (102733, 'x'), (103610, 'x'), (104576, 'x'), (104961, 'x'), (105441, 'x'), (105835, 'x'), (106299, 'x'), (106726, 'x'), (107142, 'x'), (108189, 'x'), (109052, 'x'), (109924, 'x'), (110832, 'x'), (111764, 'x'), (112659, 'x'), (113509, 'x'), (114449, 'x'), (114849, 'x'), (115030, 'x'), (115330, 'x'), (116132, 'x'), (116993, 'x'), (117827, 'x'), (118780, 'x'), (119779, 'x'), (124985, 'x'), (125867, 'x'), (126797, 'x'), (127661, 'x'), (128528, 'x'), (129437, 'x'), (130341, 'x'), (131199, 'x'), (132048, 'x'), (132962, 'x'), (133866, 'x'), (134733, 'x'), (135685, 'x'), (136619, 'x'), (137553, 'x'), (138677, 'x'), (139496, 'x'), (140432, 'x'), (141336, 'x'), (142309, 'x'), (142709, 'x'), (143175, 'x'), (144074, 'x'), (144957, 'x'), (145942, 'x'), (146345, 'x'), (146828, 'x'), (147311, 'x'), (147777, 'x'), (148758, 'x'), (149386, 'x'), (149521, 'x'), (149690, 'x'), (151133, 'x'), (154343, 'x')]:
-            track.append(x)
-        print(track)
-        start[0]=pygame.time.get_ticks()-321
-        currsong[0]="Les Parapluies de Cherbourg"
-        percent[0],percent[1],percent[2]=0,1,1
+        init_final()
 
 def final():
     bg = pygame.Surface((1280,720))
@@ -216,7 +295,10 @@ def final():
         objects.beats.append(objects.beat(place="up",color=colors[track[0][1]]))
         track.pop(0)
 
+    update_anim(objects.ui["final_frames"],0,0)
+    update_ui()
     update_beat()
+    update_dialogue()
 
 def settings_menu():
     pass
@@ -224,37 +306,23 @@ def settings_menu():
 def mechanics():
     screen.blit(objects.ui["mech"],(0,0))
 
-#============= EFFECTS ============#
+def game_over():
+    bg = pygame.Surface((1280,720))
+    screen.blit(bg,(0,0))
+    pygame.mixer.music.stop()
 
-def success():
-    combo[0]+=1
-    objects.beats.pop(0)
-    sounds["hit"].play()
-    percent[1]+=1
-    percent[2]+=1
-    pass
+#====================================================#
+#=====================================================#
+#=====================================================#
+#=====================================================#
 
-def fail():
-    combo[0]=0
-    pass
-
-# astig 25
-# mahusay 50
-# lodi 100
-def astig():
-    pass
-
-def mahusay():
-    pass
-
-def lodi():
-    pass
-
-#============= EFFECTS ============#
+def changemech():
+    state[0]="mechanics"
 
 def main():
     l = False
-    states = {"titlescreen":titlescreen,"tutorial":tutorial,"settings_menu":settings_menu,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics}
+    states = {"titlescreen":titlescreen,"tutorial":tutorial,"settings_menu":settings_menu,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over}
+    inits = {"tutorial":changemech,"final":init_final}
     while True:
         for event in pygame.event.get():
 
@@ -264,26 +332,29 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key==32: #space
                     if state[0]=="mechanics":
-                        state[0]="tutorial"
-                        start[0]=pygame.time.get_ticks()-100
-                        for i in objects.songs["tutorial"]['track']:
-                            track.append(i)
-                        pygame.mixer.music.load(objects.songs["tutorial"]["path"])
-                        pygame.mixer.music.play()   
-                        percent[0],percent[1],percent[2]=0,1,1
-                        currsong[0]="Tinikling"
-                        for i in objects.tutorial["track"]:
-                            animtrack.append(i)
-                        for i in objects.tutorial["helpdiag"]:
-                            tuttrack.append(i)
-                        for i in objects.tutorial["dialogue"]:
-                            dialoguetrack.append(i)
-
+                        init_tutorial()
 
                     if state[0]=="menu":
                         pass
 
-                if event.key==122:
+                    if state[0]=="game_over":
+                        inits[last_level[0]]()
+                
+                if event.key==99: #c
+                    if len(objects.beats)>0:
+                        pressed[2]=1
+                        if objects.beats[0].rect.colliderect(receiver[0].rect):
+                            if objects.beats[0].color=="orange" and pressed[1]==1:
+                                success()
+                            elif objects.beats[0].color=="purple" and pressed[0]==1:
+                                success()
+                            elif objects.beats[0].color in ["blue","red"]:
+                                objects.beats.pop(0)
+                                fail()
+                        else:
+                            fail()
+
+                if event.key==122: #z
                     if len(objects.beats)>0:
                         pressed[0]=1
                         if objects.beats[0].rect.colliderect(receiver[0].rect):
@@ -294,7 +365,7 @@ def main():
                         else:
                             fail()
 
-                if event.key==120:
+                if event.key==120: #x
                     if len(objects.beats)>0:
                         pressed[1]=1
                         if objects.beats[0].rect.colliderect(receiver[0].rect):
@@ -305,16 +376,6 @@ def main():
                         else:
                             fail()
                 
-                if event.key==99:
-                    if len(objects.beats)>0:
-                        pressed[2]=1
-                        if objects.beats[0].rect.colliderect(receiver[0].rect):
-                            if objects.beats[0].color=="orange" and pressed[1]==1:
-                                success()
-                            elif objects.beats[0].color=="purple" and pressed[0]==1:
-                                success()
-                        else:
-                            fail()
                     
                 if event.key==112:
                     temp.append(pygame.time.get_ticks()-start[0])

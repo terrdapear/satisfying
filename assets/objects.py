@@ -73,3 +73,5 @@ def init():
     ui["corners"]=pygame.image.load("assets\images\_anikanik\_threefourths.png").convert_alpha()
     ui["threefourths"]=pygame.image.load("assets\images\_anikanik\corners.png").convert_alpha()
     ui["mech"]=pygame.transform.scale_by(pygame.image.load("assets\images\_anikanik\Indak.png"),2/3 ).convert()
+    #n=20#number of frames
+    #ui["final_frames"] = [pygame.image.load("assets\images\_final\_final_frame"+str(x)).convert() for x in range(1,n)]
