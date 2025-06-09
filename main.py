@@ -53,7 +53,7 @@ diag_center=[640,670]
 def init_tutorial():
     state[0]="tutorial"
     last_level[0]="tutorial"
-    start[0]=pygame.time.get_ticks()-160
+    start[0]=pygame.time.get_ticks()-80
 
     #clear
     objects.beats.clear()
@@ -85,6 +85,7 @@ def init_final():
     track.clear()
     animtrack.clear()
     dialoguetrack.clear()
+
 
     for i in [(6916.666666666667, "Mula noong ako'y musmos pa lamang,"), 
  (13833.333333333334, "mahilig na akong sumayaw."), 
@@ -335,9 +336,9 @@ def scene2():
     screen.blit(bbg,(0,0))
     l=objects.fonts["maragsasmall"] 
     j1 = l.render("Josefina: Mama, nakauwi na po ako!",True,(255,255,255))
-    j2 = l.render("Carmela: Anak, kumusta ang pagsasanay mo?",True,(255,255,255))
-    c1 = l.render("Josefina: Mabuti naman po mama.",True,(255,255,255))
-    j3 = l.render("Carmela: Mukhang pagod na pagod ka; tara at kumain na tayo.",True,(255,255,255))
+    j2 = l.render("Carmela: Oh anak, nandito ka na pala. kumusta naman ang pagsasanay mo?",True,(255,255,255))
+    c1 = l.render("Josefina: Mabuti naman po mama!",True,(255,255,255))
+    j3 = l.render("Carmela: Mukhang pagod na pagod ka anak. May inihanda na akong pagkain, halika't kumain na tayo!",True,(255,255,255))
     
 
     if time<43:
@@ -392,11 +393,11 @@ def talk_before_final():
     
     l=objects.fonts["maragsasmall"] 
     j1 = l.render("Josefina: Mama, bukas na po ang sayaw ko sa fiesta!",True,(255,255,255))
-    j2 = l.render("Ilang buwan ko na ito inaabangan at ngayon parating na.",True,(255,255,255))
-    c1 = l.render("Carmela:  Haha, handa ka na anak?",True,(255,255,255))
+    j2 = l.render("Ilang buwan ko na ito inaabangan at ngayo'y parating na!",True,(255,255,255))
+    c1 = l.render("Carmela:  Nasasabik na rin ako para sa iyo, anak. Handa ka na?",True,(255,255,255))
     j3 = l.render("Josefina: Opo ma, pero... ma, ika'y hindi talaga makapupunta?",True,(255,255,255))
-    c2 = l.render("Carmela: 'Di, hindi maganda ang aking pakiramdam.",True,(255,255,255))
-    c3 = l.render("Ako'y mananatili nalang muna rito sa ating tahanan.",True,(255,255,255))
+    c2 = l.render("Carmela: Hindi anak eh, hindi maganda ang aking pakiramdam.",True,(255,255,255))
+    c3 = l.render("Ako'y mananatili na lamang muna rito sa ating tahanan.",True,(255,255,255))
     j4 = l.render("Josefina: Sige po...",True,(255,255,255))
     d1 = l.render("Ang hindi alam ni Josefina ay bukas na rin ihahatid si Carmela",True,(255,255,255))
     d2 = l.render("patungong ",True,(255,255,255))
@@ -467,7 +468,8 @@ def final():
     update_dialogue(0)
 
     if lim>173_000:
-        state[0]="ty"
+        state[0]="last"
+        start[0]=pygame.time.get_ticks()
 
 def mechanics():
     screen.blit(objects.ui["mech"],(0,0))
@@ -476,6 +478,13 @@ def game_over():
     bg = objects.ui["fail"]
     screen.blit(bg,(0,0))
     pygame.mixer.music.stop()
+
+def last():
+    time = pygame.time.get_ticks() - start[0]
+    img = pygame.image.load("assets/ENDING_SCENE/last.png").convert()
+    screen.blit(img,(0,0))
+    if time>7_000:
+        state[0]="ty"
 
 def ty():
     screen.blit(objects.ui["ty"],(0,0))
@@ -491,7 +500,7 @@ def changemech():
 
 def main():
     l = False
-    states = {"titlescreen":titlescreen,"tutorial":tutorial,"Settings":Settings,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over,"ty":ty,"prefi":prefi}
+    states = {"titlescreen":titlescreen,"tutorial":tutorial,"Settings":Settings,"scene2":scene2,"scene1":scene1,"talk_before_final":talk_before_final,"final":final,"mechanics":mechanics,"game_over":game_over,"ty":ty,"prefi":prefi,"last":last}
     inits = {"tutorial":changemech,"final":init_final}
     while True:
         for event in pygame.event.get():
