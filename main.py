@@ -220,7 +220,7 @@ def Settings():
     screen.blit(txt,(920,378))
     txt1 = objects.fonts["bantayoglight"].render(str(settings["beat_speed"]),True,(0,0,0))
     screen.blit(txt1,(915,560))
-digs = ["Itakwil, palayasin, patayin man ako...","Hinding-hindi nila maalis ang sayaw mula sa aking katawan.","","Ituturo ko sa iyo ang sayaw na nagmula pa sa ating mga katutubo,","kung saan ikaw ay tila isang ibon na tinatawag nating tikling,","na umiiwas sa mga inihandang patibong ng mga magsasaka.","Tinatawag natin itong tinikling."]
+digs = ["Itakwil, palayasin, patayin man ako...","Hinding-hindi nila maaalis ang sayaw mula sa aking katawan.","","Ituturo ko sa iyo ang sayaw na nagmula pa sa ating mga katutubo,","kung saan ikaw ay tila isang ibon na tinatawag nating tikling,","na umiiwas sa mga inihandang patibong ng mga magsasaka.","Tinatawag natin itong tinikling."]
 def scene1():
     time = pygame.time.get_ticks()-start[0]
     if time<1_000:
@@ -295,7 +295,10 @@ def tutorial():
 
     update_ui(1)
     update_beat()
-    update_dialogue(1)
+    if lim<47682:
+        update_dialogue(1)
+    else:
+        update_dialogue(0)
 
     if lim>104008.609271522:
         state[0]="scene2"
@@ -443,7 +446,7 @@ def final():
     update_beat()
     update_dialogue(0)
 
-    if lim>166_000:
+    if lim>173_000:
         state[0]="ty"
 
 def mechanics():
