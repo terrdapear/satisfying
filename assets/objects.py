@@ -30,12 +30,14 @@ songs = {
     },
     "opener":{
         "path":"assets/music/openingmusic.MP3"
-    }
+    },
+    "Rondalla":"assets/music/rondalla.mp3"
 }
 
 sounds = {
     "hit":"assets\sounds\_hit.mp3",
-    "clap":"assets\sounds\_clap.mp3"
+    "clap":"assets\sounds\_clap.mp3",
+    "bram":"assets/sounds/bram.mp3"
 }
 
 tutorial={
@@ -109,3 +111,4 @@ def init():
     ui["bggg"] = pygame.transform.scale_by(pygame.image.load("assets/town.png"),2/3).convert()
     ui["one"] = pygame.image.load("assets/talk/1.png").convert()
     ui["two"] = pygame.transform.scale_by(pygame.image.load("assets/talk/2.png"),2/3).convert()
+    ui["HATDOG"] = pygame.image.load("assets/KAIN.png").convert()

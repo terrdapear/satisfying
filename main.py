@@ -18,9 +18,10 @@ colors = {"z":"blue","x":"red","cz":"purple","cx":"orange"}
 #===========================init
 state=["titlescreen"]
 #==========================global stuff
-sounds = {"hit":pygame.mixer.Sound(objects.sounds["hit"]),"clap":pygame.mixer.Sound(objects.sounds["clap"])}
+sounds = {"hit":pygame.mixer.Sound(objects.sounds["hit"]),"clap":pygame.mixer.Sound(objects.sounds["clap"]),"bram":pygame.mixer.Sound(objects.sounds["bram"])}
 sounds["hit"].set_volume(0.6)
 sounds["clap"].set_volume(0.8)
+sounds["bram"].set_volume(0.8)
 settings={
     "beat_speed":10,
     "volume":10
@@ -136,9 +137,11 @@ def success():
 def fail():
     percent[2]+=1
     percent[0]=percent[1]/percent[2]
-    if percent[0]<.7:
+    if percent[0]<.6:
         state[0]="game_over"
 
+once = [True]
+twice = [True]
 #============= EFFECTS ============#
 #=====================================================#
 #=====================================================#
@@ -187,6 +190,7 @@ def update_volume(l): # +-1
     pygame.mixer.music.set_volume(settings['volume']/10)
     sounds["hit"].set_volume(0.6*(settings['volume']/10))
     sounds["clap"].set_volume(0.8*(settings['volume']/10))
+    sounds["bram"].set_volume(0.8*(settings['volume']/10))
 
 def update_speed(l): # +-1
     settings["beat_speed"]+=l
@@ -231,6 +235,11 @@ def scene1():
     if time>12_000: #black screen
         x=2
     if time>22_000: #girl talks to mom
+        if twice[0]:
+            twice[0]=False
+            pygame.mixer.music.load(objects.songs["Rondalla"])
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(settings["volume"]/25)
         x=3
     if time>27_000:
         x=4
@@ -240,6 +249,8 @@ def scene1():
         x=6
     if time>50_000:
         state[0]="mechanics"
+        
+            
     
     screen.blit(objects.ui["opener"][x],(0,0))
 
@@ -356,6 +367,9 @@ def prefi():
         j1 = l.render("Ngunit, sa isang kondisyon... Pagsapit ng takdang panahon,",True,(0,0,0))
         rect = j1.get_rect(center=(640,690))
         screen.blit(j1,rect)
+        if once[0] and time>13_800:
+            once[0]=False
+            sounds["bram"].play()
     elif time<21_000:
         screen.blit(objects.ui["two"],(0,0))
         j1 = l.render("iyong isusuko ang iyong kapangyarihang taglay sa akin, kasabay nito ay ang iyong kamatayan.",True,(255,255,255))
@@ -369,9 +383,13 @@ def prefi():
 #start[0]=pygame.time.get_ticks()
 def talk_before_final():
     time = (pygame.time.get_ticks()-start[0])/1000
-    bg = pygame.Surface((1280,720))
-    bg.fill("Black")
+    bg = objects.ui["HATDOG"]
+    bbg = pygame.Surface((1280,720))
+    bbg.fill("Black")
+    bbg.set_alpha(150)
     screen.blit(bg,(0,0))
+    screen.blit(bbg,(0,0))
+    
     l=objects.fonts["maragsasmall"] 
     j1 = l.render("Josefina: Mama, bukas na po ang sayaw ko sa fiesta!",True,(255,255,255))
     j2 = l.render("Ilang buwan ko na ito inaabangan at ngayon parating na.",True,(255,255,255))
@@ -408,7 +426,9 @@ def talk_before_final():
         if time>35:
             screen.blit(d1,(30,410))
         if time>40:
-            screen.blit(bg,(0,0))
+            aaa = pygame.Surface((1280,720))
+            aaa.fill("Black")
+            screen.blit(aaa,(0,0))
             screen.blit(d2,(30,450))
         if time>40.5:
             screen.blit(d3,(170,450))
@@ -482,6 +502,7 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key==32: #space
                     if state[0]=="mechanics":
+                        pygame.mixer.music.set_volume(settings["volume"]/10)
                         init_tutorial()
 
                     if state[0]=="menu":
